@@ -1,0 +1,2 @@
+# CycloneGame
+ Cyclone Game is a two player game. There are 10 LEDs and only one LED is on at any time. In the beginning of the game, players determine the LEDs shifting speed by pressing a button between 0 and 3. Then the game starts with setting the LED0 on and it shifts through right to left continuously. In order to gain score players have to press their corresponding push buttons when LED9 is on. If one player or both players scored 9 times, a 7-segment display shows the winner/s and total score in a half second loop.
