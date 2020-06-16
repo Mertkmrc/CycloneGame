@@ -1,3 +1,6 @@
+.global _start
+_start:
+	
 Start:
 LDR R0, =0xFF200000 // Address of LEDs
 LDR R1, =0xFFFEC600 // R1 points to Timer
@@ -7,7 +10,6 @@ LDR R9, =speed_Check // Pointer for SPEED0-3
 LDR R7, [R9] // Load the 7 segment display values for speed check, SPEE 
 LDR R9, [R9, #4] // Load the second value D0-3 by updating the pointer
 STR R7, [R5, #16] // Display SPEE we got from speed_Check to 7 segment in left 4
-digits
 STR R9, [R5] // Display D0-3 in right 4 digits
 Input:
 LDR R7, [R3,#0xC] // Load the status register of timer
@@ -39,8 +41,7 @@ CMP R4, #1 // if 1, go for the next LED.
 BNE Inner_loop
 STR R4, [R1, #0xC] // Reset status register
 LSL R2, R2, #1 // Shift to light up the next LED
-CMP R2, #512 // Check if LED8 was on the previous round. If so clearing the edge
-capture register
+CMP R2, #512 // Check if LED8 was on the previous round. If so clearing the edge capture register
 BLEQ Push_Button_Clear
 CMP R2, #1024 // Check if LED9 was light up previous round
 MOVEQ R2, #1 // If so return back to LED0
@@ -80,7 +81,6 @@ SCORE_B:
 ADD R9, R9, #1 // Increment the score
 ADD R12, R10, R9, LSL #2 // Update the pointer for 7-segment display
 BX LR
-noldu
 WINNER_A:
 LDR R4, =player // Pointer for displaying PLAYER
 LDR R7, [R4] // Load hex values of PLAY
@@ -152,6 +152,5 @@ player:
 speed_Check:
 .word 0x6d737979, 0x5e3f404f // SPEE, D0-3
 speed_num:
-.word 0xBEBC200, 0x5F5E100, 0x2FAF080, 0x17D7840 // Hex values of the speeds: 1, 0.5,
-0.25, and 0.125
+.word 0xBEBC200, 0x5F5E100, 0x2FAF080, 0x17D7840 // Hex values of the speeds: 1, 0.5, 0.25, and 0.125
 .end
