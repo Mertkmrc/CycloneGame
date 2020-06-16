@@ -4,7 +4,7 @@ LDR R1, =0xFFFEC600 // R1 points to Timer
 LDR R3, =0xFF200050 // Address of Push Buttons
 LDR R5, =0xFF200020 // Address of 7 Segment Display
 LDR R9, =speed_Check // Pointer for SPEED0-3
-LDR R7, [R9] // Load the 7 segment display values for speed check, SPEE
+LDR R7, [R9] // Load the 7 segment display values for speed check, SPEE 
 LDR R9, [R9, #4] // Load the second value D0-3 by updating the pointer
 STR R7, [R5, #16] // Display SPEE we got from speed_Check to 7 segment in left 4
 digits
@@ -29,9 +29,9 @@ MOV R2, #1 // 1 for initialize the LED0 is on
 MOV R8, #0 // Score of the Player A
 MOV R9, #0 // Score of the Player B
 LDR R10, =SegmentCode
-MOV R11, R10 // Scoreís pointer of Player A for 7-segment display
+MOV R11, R10 // Score‚Äôs pointer of Player A for 7-segment display
 
-MOV R12, R10 // Scoreís pointer of Player B for 7-segment display
+MOV R12, R10 // Score‚Äôs pointer of Player B for 7-segment display
 BL DISPLAY
 Mainloop: STR R2, [R0] // Update the LEDs
 Inner_loop: LDR R4, [R1, #0xC] // Check the status register
@@ -87,7 +87,7 @@ LDR R7, [R4] // Load hex values of PLAY
 LDR R4, [R4, #4] // Update pointer and load ER
 STR R7, [R5, #16] // Display "PLAY" on left 4 digits
 ORR R4, R4, #0x77 // Concatenate the ER with A
-STR R4, [R5] // Display ìER Aî on right 4 digits
+STR R4, [R5] // Display ‚ÄúER A‚Äù on right 4 digits
 CMP R9, R8 // Check if they tied in the score
 BLEQ DELAY
 BEQ WINNER_B // If so wait then show PLAYER B on 7 segment as well
@@ -98,7 +98,7 @@ LDR R7, [R4] // Load hex values of PLAY
 LDR R4, [R4, #4] // Update pointer and load ER
 STR R7, [R5, #16] // Display "PLAY" on left 4 digits
 ORR R4, R4, #0x7C //Concatenate the ER with B
-STR R4, [R5] // Display ìER Bî on right 4 digits
+STR R4, [R5] // Display ‚ÄúER B‚Äù on right 4 digits
 B Done
 Done:
 ADD R6, R6, #1 // Increment the winner loop counter
